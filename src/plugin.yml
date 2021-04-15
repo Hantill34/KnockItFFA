@@ -1,0 +1,5 @@
+main: knockit.main.Main
+version: 0.1
+name: KnockIt
+authors: [JustFloooo, Nicronicson]
+api-version: 1.13
