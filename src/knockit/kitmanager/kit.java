@@ -40,5 +40,10 @@ public class kit implements Listener {
         return it;
     }
 
+    public void equip(Player p)
+    {
+
+    }
+
 
 }
