@@ -1,4 +1,4 @@
-package scoreboard;
+package net.problemzone.knockit.scoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,21 +7,19 @@ import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
-public class ScoreboardKnockIT {
+public class KnockItScoreboard {
 
-    private Map<Player, Integer> playerDeath = new HashMap<>();
+    private final Map<Player, Integer> playerDeath = new HashMap<>();
 
     public void setScoreboard(Player player)
     {
 
-        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
-
-        Objective obj = board.registerNewObjective("ServerName", "dummy", ChatColor.GREEN + "» KnockIt «");
+        Scoreboard board = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
+        Objective obj = board.registerNewObjective("Infos", "dummy", ChatColor.GREEN + "» KNOCKIT «");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-
 
         Score onlineName = obj.getScore(ChatColor.WHITE + "➵ Online");
         onlineName.setScore(15);
@@ -34,15 +32,12 @@ public class ScoreboardKnockIT {
         }
         obj.getScore(ChatColor.BLACK + "" + ChatColor.WHITE).setScore(14);
 
-
         Score leer = obj.getScore(ChatColor.WHITE + "");
         leer.setScore(13);
         Team leerZeile = board.registerNewTeam("leerZeile");
         leerZeile.addEntry(ChatColor.RED + "" + ChatColor.WHITE);
         leerZeile.setPrefix(ChatColor.RED + "");
         obj.getScore(ChatColor.BLACK + "" + ChatColor.WHITE).setScore(12);
-
-
 
         Score death = obj.getScore(ChatColor.WHITE + "➵ Tode");
         death.setScore(11);
@@ -51,10 +46,7 @@ public class ScoreboardKnockIT {
         deathCounter.setPrefix(ChatColor.RED + "" + playerDeath.get(player));
         obj.getScore(ChatColor.RED + "" + ChatColor.WHITE).setScore(10);
 
-
-
         player.setScoreboard(board);
-
     }
 
     public void updateDeath(Player player){
