@@ -7,12 +7,13 @@ import java.util.Map;
 
 public class Language {
 
-    private static final String SYSTEMPREFIX = ChatColor.GOLD + "KnockIt " + ChatColor.DARK_GRAY + "» ";
+    private static final String SYSTEMPREFIX = ChatColor.GREEN + "KnockIt " + ChatColor.DARK_GRAY + "» ";
 
     private static final Map<LanguageKeyword, String> lang = new HashMap<>();
 
     static {
         lang.put(LanguageKeyword.KIT_SELECTED, "Du hast Kit %s ausgewählt");
+        lang.put(LanguageKeyword.MISSING_RIGHTS, "Du hast nicht die erforderlichen Rechte!");
     }
 
     public static String getStringFromKeyword(LanguageKeyword keyword){
