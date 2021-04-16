@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -32,6 +33,14 @@ public class KnockItListener implements Listener{
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
 
+        ItemStack chest = new ItemStack(Material.CHEST, 1);
+        ItemMeta chestItemMeta = chest.getItemMeta();
+
+        assert chestItemMeta != null;
+        chestItemMeta.setDisplayName(ChatColor.YELLOW + "Kitauswahl");
+        chest.setItemMeta(chestItemMeta);
+
+
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
 
@@ -41,6 +50,7 @@ public class KnockItListener implements Listener{
         stock.setItemMeta(stockItemMeta);
         p.getInventory().clear();
         p.getInventory().addItem(stock);
+        p.getInventory().addItem(chest);
 
         knockItScoreboard.newPlayerDeath(p);
         knockItScoreboard.newPlayerKill(p);
@@ -63,6 +73,7 @@ public class KnockItListener implements Listener{
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+
         if(event.getEntity().getLastDamageCause() instanceof EntityDamageByBlockEvent){
             EntityDamageByBlockEvent damageEvent = (EntityDamageByBlockEvent) event.getEntity().getLastDamageCause();
             if(damageEvent.getCause() == EntityDamageEvent.DamageCause.VOID){
@@ -77,7 +88,36 @@ public class KnockItListener implements Listener{
 
         knockItScoreboard.increaseDeathCounter(event.getEntity());
         knockItScoreboard.updateScoreboard();
+
     }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event)
+    {
+        Player p = event.getPlayer();
+
+        ItemStack chest = new ItemStack(Material.CHEST, 1);
+        ItemMeta chestItemMeta = chest.getItemMeta();
+
+        assert chestItemMeta != null;
+        chestItemMeta.setDisplayName(ChatColor.YELLOW + "Kitauswahl");
+        chest.setItemMeta(chestItemMeta);
+
+
+        ItemStack stock = new ItemStack(Material.STICK, 1);
+        ItemMeta stockItemMeta = stock.getItemMeta();
+
+        assert stockItemMeta != null;
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
+        stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
+        stock.setItemMeta(stockItemMeta);
+        p.getInventory().clear();
+        p.getInventory().addItem(stock);
+        p.getInventory().addItem(chest);
+    }
+
+
+
 
 }
 

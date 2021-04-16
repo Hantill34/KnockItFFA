@@ -1,13 +1,11 @@
 package net.problemzone.knockit.kitmanager;
 
-import net.problemzone.knockit.util.Language;
-import net.problemzone.knockit.util.LanguageKeyword;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Angler extends kit
 {
@@ -22,14 +20,24 @@ public class Angler extends kit
     public void equip(Player p)
     {
         p.getInventory().clear();
-        p.getInventory().addItem(new ItemStack(Material.FISHING_ROD));
+
+        ItemStack stock = new ItemStack(Material.STICK, 1);
+        ItemMeta stockItemMeta = stock.getItemMeta();
+        assert stockItemMeta != null;
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
+        stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
+        stock.setItemMeta(stockItemMeta);
+
+        ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
+        ItemMeta rodItemMeta = rod.getItemMeta();
+        assert rodItemMeta != null;
+        rodItemMeta.addEnchant(Enchantment.DURABILITY, 30,true);
+        rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
+
+        p.getInventory().clear();
+        p.getInventory().addItem(stock);
+        p.getInventory().addItem(rod);
     }
 
-    @EventHandler
-    public void onMove(PlayerMoveEvent e)
-    {
-        e.getPlayer().sendMessage(String.format(Language.getStringFromKeyword(LanguageKeyword.KIT_SELECTED), ChatColor.AQUA + "Angler"));
-
-    }
 
 }
