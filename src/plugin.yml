@@ -1,5 +1,5 @@
-main: knockit.main.Main
+main: net.problemzone.knockit.Main
 version: 0.1
 name: KnockIt
-authors: [JustFloooo, Nicronicson]
+authors: [JustFloooo, Hantill34]
 api-version: 1.13
