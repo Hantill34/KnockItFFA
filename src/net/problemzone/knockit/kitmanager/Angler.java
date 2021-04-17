@@ -24,7 +24,7 @@ public class Angler extends kit
 
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 5, true);
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 

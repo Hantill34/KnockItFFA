@@ -28,6 +28,7 @@ public class kitmanager implements Listener
         //NEUES KIT HIER REGISTRIEREN
         kits.add(new Angler());
         kits.add(new Enderman());
+        kits.add(new Tank());
 
 
         this.main = main;

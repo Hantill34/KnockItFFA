@@ -56,11 +56,13 @@ public class playerDeathListener implements Listener {
                     {
                         if (kills == index)
                         {
-                            killer.sendMessage(Language.format(Language.getStringFromKeyword(LanguageKeyword.KILL_STREAK)));
+                            killer.sendMessage(Language.format(String.format(Language.getStringFromKeyword(LanguageKeyword.KILL_STREAK), index)));
                             Bukkit.getOnlinePlayers().forEach(current ->
                             {
-                                current.sendMessage(Language.format(Language.getStringFromKeyword(LanguageKeyword.GLOBAL_KILLSTREAK)));
+                                current.sendMessage(Language.format(String.format(Language.getStringFromKeyword(LanguageKeyword.KILL_STREAK), killer.getName(), index)));
                             });
+                            break;
+
                         }
                     }
 

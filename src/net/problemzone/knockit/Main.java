@@ -1,5 +1,6 @@
 package net.problemzone.knockit;
 
+import net.problemzone.knockit.killstreak.playerDeathListener;
 import net.problemzone.knockit.kitmanager.kit;
 import net.problemzone.knockit.kitmanager.kitmanager;
 import net.problemzone.knockit.scoreboard.KnockItScoreboard;
@@ -23,6 +24,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new KnockItListener(new KnockItScoreboard()), this);
         kits = new HashMap<Player, kit>();
         loadKits();
+        getServer().getPluginManager().registerEvents(new playerDeathListener(), this);
     }
 
     private void loadKits()
@@ -41,5 +43,7 @@ public class Main extends JavaPlugin {
         }
 
     }
+
+
 
 }
