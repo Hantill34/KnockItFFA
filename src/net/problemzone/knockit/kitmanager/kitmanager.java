@@ -24,7 +24,12 @@ public class kitmanager implements Listener
     public kitmanager(Main main)
     {
         kits = new ArrayList<kit>();
+
+        //NEUES KIT HIER REGISTRIEREN
         kits.add(new Angler());
+        kits.add(new Enderman());
+
+
         this.main = main;
     }
 
