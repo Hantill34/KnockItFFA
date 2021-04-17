@@ -1,5 +1,6 @@
 package net.problemzone.knockit;
 
+import com.mysql.jdbc.ServerPreparedStatement;
 import net.problemzone.knockit.scoreboard.KnockItScoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,8 +13,10 @@ import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -116,7 +119,12 @@ public class KnockItListener implements Listener{
         p.getInventory().addItem(chest);
     }
 
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event)
+    {
+        Player p = (Player) event.getPlayer();
 
+    }
 
 
 }

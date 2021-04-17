@@ -7,18 +7,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Angler extends kit
-{
+public class Enderman extends kit {
 
-    public Angler()
-    {
-        super(ChatColor.AQUA + "Angler", 0, Material.TROPICAL_FISH);
+    public Enderman() {
+        super(ChatColor.DARK_PURPLE + "Enderman", 0, Material.ENDER_EYE);
     }
 
 
     @Override
-    public void equip(Player p)
-    {
+    public void equip(Player p) {
         p.getInventory().clear();
 
         ItemStack stock = new ItemStack(Material.STICK, 1);
@@ -28,16 +25,13 @@ public class Angler extends kit
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 
-        ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
+        ItemStack rod = new ItemStack(Material.ENDER_PEARL, 2);
         ItemMeta rodItemMeta = rod.getItemMeta();
-        assert rodItemMeta != null;
-        rodItemMeta.addEnchant(Enchantment.DURABILITY, 3,true);
-        rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
+        rodItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
 
         p.getInventory().clear();
         p.getInventory().addItem(stock);
         p.getInventory().addItem(rod);
     }
-
 
 }

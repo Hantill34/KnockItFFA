@@ -2,6 +2,7 @@ package net.problemzone.knockit.kitmanager;
 
 import net.problemzone.knockit.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -52,13 +53,15 @@ public class kitmanager implements Listener
                 kit.equip(p);
             }
         }
+        e.setCancelled(true);
+
     }
 
 
 
     public void openInventory(Player p)
     {
-        Inventory inv = Bukkit.createInventory(null, 9, "&eKitauswahl");
+        Inventory inv = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Kitauswahl");
         for(kit kit : kits )
         {
             inv.addItem(kit.getItem());
