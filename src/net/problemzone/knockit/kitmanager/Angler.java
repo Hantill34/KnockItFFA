@@ -2,6 +2,7 @@ package net.problemzone.knockit.kitmanager;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -36,6 +37,7 @@ public class Angler extends kit
         p.getInventory().clear();
         p.getInventory().addItem(stock);
         p.getInventory().addItem(rod);
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 
 

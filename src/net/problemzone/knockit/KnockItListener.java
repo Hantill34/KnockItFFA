@@ -1,7 +1,8 @@
 package net.problemzone.knockit;
 
-import com.mysql.jdbc.ServerPreparedStatement;
 import net.problemzone.knockit.scoreboard.KnockItScoreboard;
+import net.problemzone.knockit.util.Language;
+import net.problemzone.knockit.util.LanguageKeyword;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -43,17 +44,9 @@ public class KnockItListener implements Listener{
         chestItemMeta.setDisplayName(ChatColor.YELLOW + "Kitauswahl");
         chest.setItemMeta(chestItemMeta);
 
-
-        ItemStack stock = new ItemStack(Material.STICK, 1);
-        ItemMeta stockItemMeta = stock.getItemMeta();
-
-        assert stockItemMeta != null;
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
-        stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
-        stock.setItemMeta(stockItemMeta);
         p.getInventory().clear();
-        p.getInventory().addItem(stock);
         p.getInventory().addItem(chest);
+        p.sendMessage(Language.format(Language.getStringFromKeyword(LanguageKeyword.JOIN_MESSAGE)));
 
         knockItScoreboard.newPlayerDeath(p);
         knockItScoreboard.newPlayerKill(p);
@@ -107,15 +100,7 @@ public class KnockItListener implements Listener{
         chest.setItemMeta(chestItemMeta);
 
 
-        ItemStack stock = new ItemStack(Material.STICK, 1);
-        ItemMeta stockItemMeta = stock.getItemMeta();
-
-        assert stockItemMeta != null;
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
-        stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
-        stock.setItemMeta(stockItemMeta);
         p.getInventory().clear();
-        p.getInventory().addItem(stock);
         p.getInventory().addItem(chest);
     }
 

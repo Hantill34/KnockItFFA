@@ -14,6 +14,9 @@ public class Language {
     static {
         lang.put(LanguageKeyword.KIT_SELECTED, "Du hast Kit %s ausgewählt");
         lang.put(LanguageKeyword.MISSING_RIGHTS, "Du hast nicht die erforderlichen Rechte!");
+        lang.put(LanguageKeyword.JOIN_MESSAGE, ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!");
+        lang.put(LanguageKeyword.KILL_STREAK, ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!");
+        lang.put(LanguageKeyword.GLOBAL_KILLSTREAK, ChatColor.GREEN + "Der Spieler " + ChatColor.GOLD + "%s" + ChatColor.GREEN + "hat eine Killstreak von " + ChatColor.GOLD + "%i " + ChatColor.GREEN + "erreicht!");
     }
 
     public static String getStringFromKeyword(LanguageKeyword keyword){
