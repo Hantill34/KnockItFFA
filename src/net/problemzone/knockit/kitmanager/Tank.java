@@ -26,7 +26,7 @@ public class Tank extends kit
 
         ItemStack sword = new ItemStack(Material.WOODEN_SWORD, 1);
         ItemMeta swordItemMeta = sword.getItemMeta();
-        swordItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+        swordItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
         swordItemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
         swordItemMeta.setDisplayName(ChatColor.RED + "Schwert");
         sword.setItemMeta(swordItemMeta);
@@ -37,10 +37,24 @@ public class Tank extends kit
         chestItemMeta.setDisplayName(ChatColor.DARK_GRAY + "Panzer");
         chest.setItemMeta(chestItemMeta);
 
+        ItemStack leggins = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
+        ItemMeta legginsITemMeta = leggins.getItemMeta();
+        legginsITemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
+        legginsITemMeta.setDisplayName(ChatColor.DARK_GRAY + "Hose");
+        leggins.setItemMeta(legginsITemMeta);
+
+        ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS, 1);
+        ItemMeta bootsITemMeta = boots.getItemMeta();
+        bootsITemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
+        bootsITemMeta.setDisplayName(ChatColor.DARK_GRAY + "Schuhe");
+        boots.setItemMeta(legginsITemMeta);
+
         p.getInventory().clear();
         p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 2));
         p.getInventory().addItem(sword);
         p.getInventory().setChestplate(chest);
+        p.getInventory().setLeggings(leggins);
+        p.getInventory().setBoots(boots);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 

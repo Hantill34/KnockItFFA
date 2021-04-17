@@ -7,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffectType;
 
 public class Enderman extends kit {
 
@@ -31,6 +32,7 @@ public class Enderman extends kit {
         end.setItemMeta(endItemMeta);
 
         p.getInventory().clear();
+        p.removePotionEffect(PotionEffectType.SLOW);
         p.getInventory().addItem(stock);
         p.getInventory().addItem(end);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
