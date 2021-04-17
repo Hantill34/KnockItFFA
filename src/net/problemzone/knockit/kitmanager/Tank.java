@@ -15,7 +15,7 @@ public class Tank extends kit
 
     public Tank()
     {
-        super(ChatColor.BLACK + "Tank", 0, Material.NETHERITE_CHESTPLATE);
+        super(ChatColor.DARK_GRAY + "Tank", 0, Material.NETHERITE_CHESTPLATE);
     }
 
 
@@ -34,7 +34,7 @@ public class Tank extends kit
         ItemStack chest = new ItemStack(Material.NETHERITE_CHESTPLATE,1);
         ItemMeta chestItemMeta = chest.getItemMeta();
         chestItemMeta.addEnchant(Enchantment.DURABILITY, 5,true);
-        chestItemMeta.setDisplayName(ChatColor.BLACK + "Panzer");
+        chestItemMeta.setDisplayName(ChatColor.DARK_GRAY + "Panzer");
         chest.setItemMeta(chestItemMeta);
 
         p.getInventory().clear();
