@@ -23,16 +23,15 @@ public class Angler extends kit
 
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
-        assert stockItemMeta != null;
         stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 5, true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 
         ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
         ItemMeta rodItemMeta = rod.getItemMeta();
-        assert rodItemMeta != null;
         rodItemMeta.addEnchant(Enchantment.DURABILITY, 3,true);
         rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
+        rod.setItemMeta(rodItemMeta);
 
         p.getInventory().clear();
         p.getInventory().addItem(stock);

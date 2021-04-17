@@ -119,13 +119,6 @@ public class KnockItListener implements Listener{
         p.getInventory().addItem(chest);
     }
 
-    @EventHandler
-    public void onInteract(PlayerInteractEvent event)
-    {
-        Player p = (Player) event.getPlayer();
-
-    }
-
 
 }
 

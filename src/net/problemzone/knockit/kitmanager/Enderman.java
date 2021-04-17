@@ -20,18 +20,18 @@ public class Enderman extends kit {
 
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
-        assert stockItemMeta != null;
         stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 5, true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 
-        ItemStack rod = new ItemStack(Material.ENDER_PEARL, 2);
-        ItemMeta rodItemMeta = rod.getItemMeta();
-        rodItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
+        ItemStack end = new ItemStack(Material.ENDER_PEARL, 2);
+        ItemMeta endItemMeta = end.getItemMeta();
+        endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
+        end.setItemMeta(endItemMeta);
 
         p.getInventory().clear();
         p.getInventory().addItem(stock);
-        p.getInventory().addItem(rod);
+        p.getInventory().addItem(end);
     }
 
 }

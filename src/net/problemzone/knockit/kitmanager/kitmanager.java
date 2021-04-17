@@ -11,6 +11,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 
 public class kitmanager implements Listener
@@ -45,7 +47,7 @@ public class kitmanager implements Listener
     {
         if(e.getInventory() != null && e.getCurrentItem() != null)
         {
-            if(e.getView().getTitle().equals("&eKitauswahl"))
+            if(e.getView().getTitle().equals(ChatColor.YELLOW + "Kitauswahl"))
             {
                 Player p = (Player)e.getWhoClicked();
                 kit kit = getKitByName(e.getCurrentItem().getItemMeta().getDisplayName());
@@ -62,6 +64,17 @@ public class kitmanager implements Listener
     public void openInventory(Player p)
     {
         Inventory inv = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Kitauswahl");
+
+        //füllt das Inventar mit Items
+        /**inv.setItem(2, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(3, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(4, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(5, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(6, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(7, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(8, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(9, new ItemStack(Material.RED_STAINED_GLASS_PANE));**/
+
         for(kit kit : kits )
         {
             inv.addItem(kit.getItem());
