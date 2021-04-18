@@ -29,6 +29,7 @@ public class kitmanager implements Listener
         kits.add(new Angler());
         kits.add(new Enderman());
         kits.add(new Tank());
+        kits.add(new Assassine());
 
 
         this.main = main;
