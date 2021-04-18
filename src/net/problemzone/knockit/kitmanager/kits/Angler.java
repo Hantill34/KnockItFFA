@@ -1,5 +1,6 @@
-package net.problemzone.knockit.kitmanager;
+package net.problemzone.knockit.kitmanager.kits;
 
+import net.problemzone.knockit.kitmanager.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -9,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
-public class Angler extends kit
+public class Angler extends Kit
 {
 
     public Angler()

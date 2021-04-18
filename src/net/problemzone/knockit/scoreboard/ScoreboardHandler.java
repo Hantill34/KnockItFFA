@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class KnockItScoreboard {
+public class ScoreboardHandler {
 
     private final Map<Player, Integer> playerDeaths = new HashMap<>();
     private final Map<Player, Integer> playerKills = new HashMap<>();
@@ -30,7 +30,7 @@ public class KnockItScoreboard {
         onlineCounter.setPrefix(ChatColor.GOLD + "" + Bukkit.getOnlinePlayers().size());
         obj.getScore(ChatColor.BLUE + "" + ChatColor.WHITE).setScore(10);
 
-        obj.getScore("").setScore(9);
+        obj.getScore(" ").setScore(9);
 
         Score kills = obj.getScore(ChatColor.WHITE + "Kills:");
         kills.setScore(8);
@@ -39,7 +39,7 @@ public class KnockItScoreboard {
         killCounter.setPrefix(ChatColor.GOLD + "" + playerKills.get(player));
         obj.getScore(ChatColor.GREEN + "" + ChatColor.WHITE).setScore(7);
 
-        obj.getScore("").setScore(6);
+        obj.getScore("  ").setScore(6);
 
         Score death = obj.getScore(ChatColor.WHITE + "Tode:");
         death.setScore(5);
@@ -48,13 +48,13 @@ public class KnockItScoreboard {
         deathCounter.setPrefix(ChatColor.GOLD + "" + playerDeaths.get(player));
         obj.getScore(ChatColor.RED + "" + ChatColor.WHITE).setScore(4);
 
-        obj.getScore("").setScore(3);
+        obj.getScore("   ").setScore(3);
 
         Score kd = obj.getScore(ChatColor.WHITE + "KD:");
         kd.setScore(2);
         Team kdCounter = board.registerNewTeam("kdCounter");
         kdCounter.addEntry(ChatColor.GOLD + "" + ChatColor.WHITE);
-        kdCounter.setPrefix(ChatColor.GOLD + "" + (playerDeaths.get(player) == 0 ? "GOD" : playerKills.get(player) / playerDeaths.get(player)));
+        kdCounter.setPrefix(ChatColor.GOLD + "GOD");
         obj.getScore(ChatColor.GOLD + "" + ChatColor.WHITE).setScore(1);
 
         player.setScoreboard(board);
@@ -62,7 +62,7 @@ public class KnockItScoreboard {
 
     private void updatePlayer(Player player){
         Scoreboard board = player.getScoreboard();
-        Objects.requireNonNull(board.getTeam("playerCounter")).setPrefix(ChatColor.GOLD + "" + Bukkit.getOnlinePlayers().size());
+        Objects.requireNonNull(board.getTeam("onlineCounter")).setPrefix(ChatColor.GOLD + "" + Bukkit.getOnlinePlayers().size());
     }
 
     private void updateDeath(Player player){
@@ -72,12 +72,12 @@ public class KnockItScoreboard {
 
     private void updateKill(Player player){
         Scoreboard board = player.getScoreboard();
-        Objects.requireNonNull(board.getTeam("killCounter")).setPrefix(ChatColor.GOLD + "" + playerDeaths.get(player));
+        Objects.requireNonNull(board.getTeam("killCounter")).setPrefix(ChatColor.GOLD + "" + playerKills.get(player));
     }
 
     private void updateKD(Player player){
         Scoreboard board = player.getScoreboard();
-        Objects.requireNonNull(board.getTeam("kdCounter")).setPrefix(ChatColor.GOLD + "" + (playerDeaths.get(player) == 0 ? "GOD" : playerKills.get(player) / playerDeaths.get(player)));
+        Objects.requireNonNull(board.getTeam("kdCounter")).setPrefix(ChatColor.GOLD + "" + (playerDeaths.get(player) == 0 ? "GOD" : Math.round((playerKills.get(player) / (double) playerDeaths.get(player))*100.0)/100.0));
     }
 
     public void updateScoreboard(){

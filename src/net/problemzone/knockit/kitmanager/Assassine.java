@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
-public class Assassine extends kit {
+public class Assassine extends Kit {
 
     public Assassine() {
         super(ChatColor.DARK_RED + "Noch nicht verfügbar", 0, Material.BARRIER);

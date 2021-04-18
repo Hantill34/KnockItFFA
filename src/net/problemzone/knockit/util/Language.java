@@ -17,13 +17,14 @@ public class Language {
         lang.put(LanguageKeyword.JOIN_MESSAGE, ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!");
         lang.put(LanguageKeyword.KILL_STREAK, ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!");
         lang.put(LanguageKeyword.GLOBAL_KILLSTREAK, ChatColor.GREEN + "Der Spieler " + ChatColor.GOLD + "%s" + ChatColor.GREEN + "hat eine Killstreak von " + ChatColor.GOLD + "%x " + ChatColor.GREEN + "erreicht!");
+        lang.put(LanguageKeyword.PLAYER_DEATH, ChatColor.WHITE + "%s" + ChatColor.GRAY +  " wurde von " + ChatColor.WHITE + "%s" + ChatColor.GRAY + " runtergeknüppelt");
     }
 
     public static String getStringFromKeyword(LanguageKeyword keyword){
         return format(lang.get(keyword));
     }
 
-    public static String format(String unformattedString){
+    private static String format(String unformattedString){
         return SYSTEMPREFIX + ChatColor.GRAY + unformattedString;
     }
 

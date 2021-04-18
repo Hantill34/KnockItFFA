@@ -7,13 +7,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class kit implements Listener {
+public abstract class Kit implements Listener {
 
     private String name;
     private int preis;
     private Material mat;
 
-    public kit(String name, int price, Material mat) {
+    public Kit(String name, int price, Material mat) {
 
         this.name = name;
         this.preis = preis;

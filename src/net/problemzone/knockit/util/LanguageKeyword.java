@@ -5,7 +5,6 @@ public enum LanguageKeyword {
     MISSING_RIGHTS,
     JOIN_MESSAGE,
     KILL_STREAK,
-    GLOBAL_KILLSTREAK
-
-
+    GLOBAL_KILLSTREAK,
+    PLAYER_DEATH
 }
