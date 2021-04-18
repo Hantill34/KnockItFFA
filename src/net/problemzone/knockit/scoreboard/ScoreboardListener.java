@@ -2,7 +2,6 @@ package net.problemzone.knockit.scoreboard;
 
 import net.problemzone.knockit.util.Language;
 import net.problemzone.knockit.util.LanguageKeyword;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,6 +10,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.util.Objects;
 
 public class ScoreboardListener implements Listener {
 
@@ -36,10 +37,8 @@ public class ScoreboardListener implements Listener {
         if (e.getEntity() instanceof Player) {
             Player player = (Player) e.getEntity();
             if (e.getCause() == EntityDamageEvent.DamageCause.VOID) {
-                if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
-                    EntityDamageByEntityEvent cause = (EntityDamageByEntityEvent) player.getLastDamageCause();
-                    player.setHealth(0);
-                }
+                e.setCancelled(true);
+                player.setHealth(0);
             }
         }
     }
@@ -47,14 +46,16 @@ public class ScoreboardListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
-        if (event.getEntity().getKiller() != null) {
-            scoreboardHandler.increaseKillCounter(event.getEntity().getKiller());
-            Bukkit.broadcastMessage(String.format(Language.getStringFromKeyword(LanguageKeyword.PLAYER_DEATH), event.getEntity().getKiller().getName(), event.getEntity().getName()));
+        event.setDeathMessage(String.format(Language.getStringFromKeyword(LanguageKeyword.PLAYER_DEATH), event.getEntity().getName()));
+
+        if(Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+            if (event.getEntity().getKiller() != null) {
+                scoreboardHandler.increaseKillCounter(event.getEntity().getKiller());
+                event.setDeathMessage(String.format(Language.getStringFromKeyword(LanguageKeyword.PLAYER_DEATH_BY_PLAYER), event.getEntity().getName(), event.getEntity().getKiller().getName()));
+            }
+
+            scoreboardHandler.increaseDeathCounter(event.getEntity());
+            scoreboardHandler.updateScoreboard();
         }
-
-        scoreboardHandler.increaseDeathCounter(event.getEntity());
-        scoreboardHandler.updateScoreboard();
-
     }
-
 }
