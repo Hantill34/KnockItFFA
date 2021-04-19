@@ -1,6 +1,7 @@
 package net.problemzone.knockit.kitmanager;
 
 import net.problemzone.knockit.kitmanager.kits.Angler;
+import net.problemzone.knockit.kitmanager.kits.Assassine;
 import net.problemzone.knockit.kitmanager.kits.Enderman;
 import net.problemzone.knockit.kitmanager.kits.Tank;
 import org.bukkit.Bukkit;

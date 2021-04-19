@@ -1,6 +1,9 @@
 package net.problemzone.knockit.kitmanager.kits;
 
+
 import net.problemzone.knockit.kitmanager.Kit;
+import net.problemzone.knockit.util.Language;
+import net.problemzone.knockit.util.LanguageKeyword;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -10,6 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Angler extends Kit
 {
 
@@ -18,6 +24,23 @@ public class Angler extends Kit
         super(ChatColor.AQUA + "Angler", 0, Material.TROPICAL_FISH);
     }
 
+    public static ItemStack GrapplingHook;
+
+    public static void createGrapplingHook()
+    {
+        ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
+        ItemMeta rodItemMeta = rod.getItemMeta();
+        rodItemMeta.setUnbreakable(true);
+        rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
+        rod.setItemMeta(rodItemMeta);
+
+        List <String> lore = new ArrayList<>();
+        lore.add(ChatColor.GRAY + "Des Anglers bester Freund");
+        lore.add(Language.getStringFromKeyword(LanguageKeyword.GRAPPLER_COOLDOWN));
+        rodItemMeta.setLore(lore);
+        rod.setItemMeta(rodItemMeta);
+        GrapplingHook = rod;
+    }
 
     @Override
     public void equip(Player p)
@@ -30,16 +53,11 @@ public class Angler extends Kit
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 
-        ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
-        ItemMeta rodItemMeta = rod.getItemMeta();
-        rodItemMeta.addEnchant(Enchantment.DURABILITY, 3,true);
-        rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
-        rod.setItemMeta(rodItemMeta);
 
         p.getInventory().clear();
         p.removePotionEffect(PotionEffectType.SLOW);
         p.getInventory().addItem(stock);
-        p.getInventory().addItem(rod);
+        p.getInventory().addItem(Angler.GrapplingHook);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 

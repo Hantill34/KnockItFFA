@@ -27,26 +27,26 @@ public class Tank extends Kit
 
         ItemStack sword = new ItemStack(Material.WOODEN_SWORD, 1);
         ItemMeta swordItemMeta = sword.getItemMeta();
-        swordItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
-        swordItemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
+        swordItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+        swordItemMeta.setUnbreakable(true);
         swordItemMeta.setDisplayName(ChatColor.RED + "Schwert");
         sword.setItemMeta(swordItemMeta);
 
         ItemStack chest = new ItemStack(Material.NETHERITE_CHESTPLATE,1);
         ItemMeta chestItemMeta = chest.getItemMeta();
-        chestItemMeta.addEnchant(Enchantment.DURABILITY, 5,true);
+        chestItemMeta.setUnbreakable(true);
         chestItemMeta.setDisplayName(ChatColor.DARK_GRAY + "Panzer");
         chest.setItemMeta(chestItemMeta);
 
         ItemStack leggins = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
         ItemMeta legginsITemMeta = leggins.getItemMeta();
-        legginsITemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
+        legginsITemMeta.setUnbreakable(true);
         legginsITemMeta.setDisplayName(ChatColor.DARK_GRAY + "Hose");
         leggins.setItemMeta(legginsITemMeta);
 
         ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS, 1);
         ItemMeta bootsITemMeta = boots.getItemMeta();
-        bootsITemMeta.addEnchant(Enchantment.DURABILITY, 5, true);
+        bootsITemMeta.setUnbreakable(true);
         bootsITemMeta.setDisplayName(ChatColor.DARK_GRAY + "Schuhe");
         boots.setItemMeta(legginsITemMeta);
 

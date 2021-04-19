@@ -6,5 +6,6 @@ public enum LanguageKeyword {
     JOIN_MESSAGE,
     KILL_STREAK,
     GLOBAL_KILLSTREAK,
-    PLAYER_DEATH
+    PLAYER_DEATH,
+    GRAPPLER_COOLDOWN
 }

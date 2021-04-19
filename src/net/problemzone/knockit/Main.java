@@ -1,5 +1,6 @@
 package net.problemzone.knockit;
 
+import net.problemzone.knockit.itemevents.itemevents;
 import net.problemzone.knockit.killstreak.playerDeathListener;
 import net.problemzone.knockit.kitmanager.Kit;
 import net.problemzone.knockit.kitmanager.KitListener;
@@ -19,6 +20,8 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ScoreboardListener(scoreboardHandler), this);
         getServer().getPluginManager().registerEvents(new KitListener(kitManager), this);
         getServer().getPluginManager().registerEvents(new playerDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new itemevents(), this);
+        //cooldown.setupCooldown();
 
         loadKits();
     }

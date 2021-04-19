@@ -1,5 +1,6 @@
-package net.problemzone.knockit.kitmanager;
+package net.problemzone.knockit.kitmanager.kits;
 
+import net.problemzone.knockit.kitmanager.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
