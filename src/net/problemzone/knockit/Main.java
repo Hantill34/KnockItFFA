@@ -18,7 +18,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new ScoreboardListener(scoreboardHandler), this);
         getServer().getPluginManager().registerEvents(new KitListener(kitManager), this);
-        getServer().getPluginManager().registerEvents(new playerDeathListener(), this);
+        //getServer().getPluginManager().registerEvents(new playerDeathListener(), this);
 
         loadKits();
     }
