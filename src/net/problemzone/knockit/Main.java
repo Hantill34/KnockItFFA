@@ -31,6 +31,4 @@ public class Main extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(kit, this);
         }
     }
-
-
 }
