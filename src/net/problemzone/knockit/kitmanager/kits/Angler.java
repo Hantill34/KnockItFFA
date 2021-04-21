@@ -26,7 +26,7 @@ public class Angler extends Kit
 
     public static ItemStack GrapplingHook;
 
-    public static void createGrapplingHook()
+    /**public static void createGrapplingHook()
     {
         ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
         ItemMeta rodItemMeta = rod.getItemMeta();
@@ -34,13 +34,8 @@ public class Angler extends Kit
         rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
         rod.setItemMeta(rodItemMeta);
 
-        List <String> lore = new ArrayList<>();
-        lore.add(ChatColor.GRAY + "Des Anglers bester Freund");
-        lore.add(Language.getStringFromKeyword(LanguageKeyword.GRAPPLER_COOLDOWN));
-        rodItemMeta.setLore(lore);
-        rod.setItemMeta(rodItemMeta);
-        GrapplingHook = rod;
-    }
+
+    }**/
 
     @Override
     public void equip(Player p)
@@ -53,11 +48,17 @@ public class Angler extends Kit
         stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
         stock.setItemMeta(stockItemMeta);
 
+        ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
+        ItemMeta rodItemMeta = rod.getItemMeta();
+        rodItemMeta.setUnbreakable(true);
+        rodItemMeta.setDisplayName(ChatColor.AQUA + "Grabbling Hook");
+        rod.setItemMeta(rodItemMeta);
+
 
         p.getInventory().clear();
         p.removePotionEffect(PotionEffectType.SLOW);
         p.getInventory().addItem(stock);
-        p.getInventory().addItem(Angler.GrapplingHook);
+        p.getInventory().addItem(rod);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 
