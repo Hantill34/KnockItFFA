@@ -13,10 +13,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class KitManager {
     private final List<Kit> kits = new ArrayList<>();
+    private final Map<Player, Kit> playerKitMap = new HashMap<>();
+
 
     public KitManager() {
         //NEUES KIT HIER REGISTRIEREN
@@ -26,7 +30,7 @@ public class KitManager {
         kits.add(new Assassine());
     }
 
-    public void giveKitSelector(Player p){
+    public void giveKitSelector(Player p) {
         ItemStack chest = new ItemStack(Material.CHEST, 1);
         ItemMeta chestItemMeta = chest.getItemMeta();
 
@@ -71,6 +75,17 @@ public class KitManager {
     public List<Kit> getKits() {
         return kits;
     }
+
+    public void putPlayerInMap(Player player, Kit kit) {
+        playerKitMap.put(player, kit);
+    }
+
+    public Kit getKitByPlayer(Player player)
+    {
+        return playerKitMap.get(player);
+    }
+
+
 }
 
 
