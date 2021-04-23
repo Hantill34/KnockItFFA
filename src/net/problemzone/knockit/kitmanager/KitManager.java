@@ -1,9 +1,6 @@
 package net.problemzone.knockit.kitmanager;
 
-import net.problemzone.knockit.kitmanager.kits.Angler;
-import net.problemzone.knockit.kitmanager.kits.Assassine;
-import net.problemzone.knockit.kitmanager.kits.Enderman;
-import net.problemzone.knockit.kitmanager.kits.Tank;
+import net.problemzone.knockit.kitmanager.kits.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -28,6 +25,7 @@ public class KitManager {
         kits.add(new Enderman());
         kits.add(new Tank());
         kits.add(new Assassine());
+        kits.add(new Knight());
     }
 
     public void giveKitSelector(Player p) {
