@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class Angler extends Kit
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
         stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
-        stockItemMeta.setDisplayName(ChatColor.RED + "Stock");
+        stockItemMeta.setDisplayName(ChatColor.RED + "Knüppel");
         stock.setItemMeta(stockItemMeta);
 
         ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
@@ -56,7 +57,9 @@ public class Angler extends Kit
 
 
         p.getInventory().clear();
-        p.removePotionEffect(PotionEffectType.SLOW);
+        for (PotionEffect effect : p.getActivePotionEffects()) {
+            p.removePotionEffect(effect.getType());
+        }
         p.getInventory().addItem(stock);
         p.getInventory().addItem(rod);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);

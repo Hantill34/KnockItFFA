@@ -28,6 +28,7 @@ public class Tank extends Kit
         ItemStack sword = new ItemStack(Material.WOODEN_SWORD, 1);
         ItemMeta swordItemMeta = sword.getItemMeta();
         swordItemMeta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+        swordItemMeta.addEnchant(Enchantment.KNOCKBACK, 1, true);
         swordItemMeta.setUnbreakable(true);
         swordItemMeta.setDisplayName(ChatColor.RED + "Schwert");
         sword.setItemMeta(swordItemMeta);
@@ -51,7 +52,10 @@ public class Tank extends Kit
         boots.setItemMeta(legginsITemMeta);
 
         p.getInventory().clear();
-        p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 2));
+        for (PotionEffect effect : p.getActivePotionEffects()) {
+            p.removePotionEffect(effect.getType());
+        }
+        p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 0));
         p.getInventory().addItem(sword);
         p.getInventory().setChestplate(chest);
         p.getInventory().setLeggings(leggins);

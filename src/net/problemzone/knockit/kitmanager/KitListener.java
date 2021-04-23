@@ -3,6 +3,7 @@ package net.problemzone.knockit.kitmanager;
 import net.problemzone.knockit.kitmanager.kits.Assassine;
 import net.problemzone.knockit.util.Language;
 import net.problemzone.knockit.util.LanguageKeyword;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -63,7 +64,7 @@ public class KitListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
+    public void onPlayerTod(PlayerDeathEvent event) {
 
         if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
             if (event.getEntity().getKiller() != null) {
