@@ -61,6 +61,7 @@ public class KitListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage(Language.getStringFromKeyword(LanguageKeyword.JOIN_MESSAGE));
         kitManager.giveKitSelector(event.getPlayer());
+        event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
     }
 
     @EventHandler

@@ -32,7 +32,7 @@ public class Assassine extends Kit {
         ItemMeta stockItemMeta = stick.getItemMeta();
         stockItemMeta.setUnbreakable(true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Knüppel");
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 2, true);
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         stick.setItemMeta(stockItemMeta);
 
 

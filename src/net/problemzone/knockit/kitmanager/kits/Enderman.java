@@ -24,7 +24,7 @@ public class Enderman extends Kit {
 
         ItemStack stock = new ItemStack(Material.STICK, 1);
         ItemMeta stockItemMeta = stock.getItemMeta();
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 2, true);
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Knüppel");
         stock.setItemMeta(stockItemMeta);
 
