@@ -3,7 +3,6 @@ package net.problemzone.knockit.kitmanager;
 import net.problemzone.knockit.kitmanager.kits.Assassine;
 import net.problemzone.knockit.util.Language;
 import net.problemzone.knockit.util.LanguageKeyword;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,9 +15,9 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
-
 import java.util.Objects;
 
 public class KitListener implements Listener {
@@ -62,6 +61,7 @@ public class KitListener implements Listener {
         event.getPlayer().sendMessage(Language.getStringFromKeyword(LanguageKeyword.JOIN_MESSAGE));
         kitManager.giveKitSelector(event.getPlayer());
         event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
+        event.setJoinMessage("");
     }
 
     @EventHandler
@@ -86,5 +86,11 @@ public class KitListener implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event)
+    {
+        event.setQuitMessage("");
     }
 }

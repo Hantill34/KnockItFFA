@@ -20,7 +20,7 @@ public class ScoreboardHandler {
 
     public void setScoreboard(Player player) {
         Scoreboard board = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
-        Objective obj = board.registerNewObjective("Infos", "dummy", ChatColor.GREEN + "» KNOCKIT «");
+        Objective obj = board.registerNewObjective("Infos", "dummy", ChatColor.GREEN + "" + ChatColor.BOLD + " KNOCKIT ");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         obj.getScore("").setScore(15);
