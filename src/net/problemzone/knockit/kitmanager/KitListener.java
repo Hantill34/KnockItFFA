@@ -1,9 +1,12 @@
 package net.problemzone.knockit.kitmanager;
 
+import net.problemzone.knockit.kitmanager.kits.Angler;
 import net.problemzone.knockit.kitmanager.kits.Assassine;
 import net.problemzone.knockit.util.Language;
 import net.problemzone.knockit.util.LanguageKeyword;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,10 +16,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import java.util.Objects;
 
@@ -92,5 +94,31 @@ public class KitListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event)
     {
         event.setQuitMessage("");
+    }
+
+    @EventHandler
+    public void onFish(PlayerFishEvent event)
+    {
+        Player player = event.getPlayer();
+        ItemStack item = player.getInventory().getItemInMainHand();
+        ItemMeta meta = item.getItemMeta();
+        String name = meta.getDisplayName();
+        if(name.equals(ChatColor.AQUA + "Grabbling Hook"))
+        {
+            if(event.getState().equals(PlayerFishEvent.State.REEL_IN))
+            {
+                if(Angler.checkCooldown(event.getPlayer()))
+                {
+                    Location playerLocation = player.getLocation();
+                    Location grapplingLocation = event.getHook().getLocation();
+                    Location change = grapplingLocation.subtract(playerLocation);
+                    player.setVelocity(change.toVector().multiply(0.3));
+                    Angler.setCooldown(event.getPlayer(), 5);
+                }
+                else {
+                    player.sendMessage(Language.getStringFromKeyword(LanguageKeyword.GRAPPLER_COOLDOWN));
+                }
+            }
+        }
     }
 }

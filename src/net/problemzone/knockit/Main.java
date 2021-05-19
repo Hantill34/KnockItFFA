@@ -3,6 +3,7 @@ package net.problemzone.knockit;
 import net.problemzone.knockit.kitmanager.Kit;
 import net.problemzone.knockit.kitmanager.KitListener;
 import net.problemzone.knockit.kitmanager.KitManager;
+import net.problemzone.knockit.kitmanager.kits.Angler;
 import net.problemzone.knockit.scoreboard.ScoreboardHandler;
 import net.problemzone.knockit.scoreboard.ScoreboardListener;
 import org.bukkit.Bukkit;
@@ -18,6 +19,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ScoreboardListener(scoreboardHandler), this);
         getServer().getPluginManager().registerEvents(new KitListener(kitManager), this);
         loadKits();
+        Angler.setupCooldown();
     }
 
     private void loadKits() {
