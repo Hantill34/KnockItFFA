@@ -20,6 +20,8 @@ import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.util.Vector;
+
 import java.util.Objects;
 
 public class KitListener implements Listener {
@@ -112,7 +114,9 @@ public class KitListener implements Listener {
                     Location playerLocation = player.getLocation();
                     Location grapplingLocation = event.getHook().getLocation();
                     Location change = grapplingLocation.subtract(playerLocation);
-                    player.setVelocity(change.toVector().multiply(0.3));
+                    Vector vector = change.toVector();
+                    vector.setY(vector.getY() * 0.15);
+                    player.setVelocity(vector.multiply(0.5));
                     Angler.setCooldown(event.getPlayer(), 5);
                 }
                 else {

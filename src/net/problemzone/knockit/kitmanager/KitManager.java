@@ -44,20 +44,17 @@ public class KitManager {
         Inventory inv = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Kitauswahl");
 
         //füllt das Inventar mit Items
-        /*
-        inv.setItem(2, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(3, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(4, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(5, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(6, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(7, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(8, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(9, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        */
 
-        for (Kit kit : kits) {
-            inv.addItem(kit.getItem());
-        }
+        inv.setItem(0, kits.get(0).getItem());
+        inv.setItem(1, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(2, kits.get(1).getItem());
+        inv.setItem(3, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(4, kits.get(2).getItem());
+        inv.setItem(5, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(6, kits.get(3).getItem());
+        inv.setItem(7, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        inv.setItem(8, kits.get(4).getItem());
+
         p.openInventory(inv);
     }
 

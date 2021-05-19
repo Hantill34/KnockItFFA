@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Assassine extends Kit {
 
     public Assassine() {
-        super(ChatColor.DARK_RED + "Assassine", 0, Material.DIAMOND_AXE);
+        super(ChatColor.DARK_RED + "Assassine", 0, Material.IRON_SWORD);
     }
 
     @Override

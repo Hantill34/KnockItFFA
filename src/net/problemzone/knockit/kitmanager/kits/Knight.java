@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffect;
 public class Knight extends Kit {
 
     public Knight() {
-        super(ChatColor.DARK_GREEN + "Knight", 0, Material.IRON_SWORD);
+        super(ChatColor.DARK_GREEN + "Ritter", 0, Material.SHIELD);
     }
 
     @Override

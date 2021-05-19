@@ -16,7 +16,7 @@ public class Tank extends Kit
 
     public Tank()
     {
-        super(ChatColor.DARK_GRAY + "Tank", 0, Material.NETHERITE_CHESTPLATE);
+        super(ChatColor.DARK_GRAY + "Tank", 0, Material.DIAMOND_CHESTPLATE);
     }
 
 

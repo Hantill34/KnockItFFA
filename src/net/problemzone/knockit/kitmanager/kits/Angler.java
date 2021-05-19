@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Angler extends Kit {
 
     public Angler() {
-        super(ChatColor.AQUA + "Angler", 0, Material.TROPICAL_FISH);
+        super(ChatColor.AQUA + "Angler", 0, Material.FISHING_ROD);
     }
 
 
