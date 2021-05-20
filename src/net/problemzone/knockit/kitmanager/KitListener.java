@@ -4,7 +4,6 @@ import net.problemzone.knockit.kitmanager.kits.Angler;
 import net.problemzone.knockit.kitmanager.kits.Assassine;
 import net.problemzone.knockit.util.Language;
 import net.problemzone.knockit.util.LanguageKeyword;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
