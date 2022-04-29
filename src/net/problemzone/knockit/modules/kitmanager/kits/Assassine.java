@@ -1,16 +1,11 @@
-package net.problemzone.knockit.kitmanager.kits;
+package net.problemzone.knockit.modules.kitmanager.kits;
 
-import net.problemzone.knockit.kitmanager.Kit;
-import net.problemzone.knockit.util.Language;
-import net.problemzone.knockit.util.LanguageKeyword;
+import net.problemzone.knockit.modules.kitmanager.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;

@@ -1,7 +1,6 @@
-package net.problemzone.knockit.scoreboard;
+package net.problemzone.knockit.modules.scoreboard;
 
 import net.problemzone.knockit.util.Language;
-import net.problemzone.knockit.util.LanguageKeyword;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -111,7 +110,7 @@ public class ScoreboardHandler {
 
         playerKillStreak.put(player, playerKillStreak.get(player) + 1);
         if (playerKillStreak.get(player) > 0 && playerKillStreak.get(player) % 5 == 0) {
-            Bukkit.broadcastMessage(String.format(Language.getStringFromKeyword(LanguageKeyword.GLOBAL_KILLSTREAK), player.getName(), playerKillStreak.get(player)));
+            Bukkit.broadcastMessage(String.format(Language.GLOBAL_KILLSTREAK.getFormattedText(), player.getName(), playerKillStreak.get(player)));
         }
     }
 

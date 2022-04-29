@@ -2,37 +2,33 @@ package net.problemzone.knockit.util;
 
 import org.bukkit.ChatColor;
 
-import java.util.HashMap;
-import java.util.Map;
+public enum Language {
 
-public class Language {
+    KIT_SELECTED("Du hast Kit %s ausgewählt"),
+    MISSING_RIGHTS("Du hast nicht die erforderlichen Rechte!"),
+    JOIN_MESSAGE(ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!"),
+    KILL_STREAK(ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!"),
+    GLOBAL_KILLSTREAK(ChatColor.GREEN + "Der Spieler " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " hat eine Killstreak von " + ChatColor.GOLD + "%d " + ChatColor.GREEN + "erreicht!"),
+    PLAYER_DEATH(ChatColor.WHITE + "%s" + ChatColor.GRAY +  " fand einen anderen Ausweg"),
+    PLAYER_DEATH_BY_PLAYER(ChatColor.WHITE + "%s" + ChatColor.GRAY +  " wurde von " + ChatColor.WHITE + "%s" + ChatColor.GRAY + " runtergeknüppelt"),
+    GRAPPLER_COOLDOWN (ChatColor.GRAY + "Du hast 5 Sekunden Cooldown!"),
+    JOIN(ChatColor.GREEN + "» " + ChatColor.WHITE + "%s"),
+    QUIT(ChatColor.RED + "" + ChatColor.GRAY + "%s");
 
     private static final String SYSTEMPREFIX = ChatColor.GREEN + "KnockIt " + ChatColor.DARK_GRAY + "» ";
 
-    private static final Map<LanguageKeyword, String> lang = new HashMap<>();
+    private final String text;
 
-    static {
-        lang.put(LanguageKeyword.JOIN, ChatColor.GREEN + "» " + ChatColor.WHITE + "%s");
-        lang.put(LanguageKeyword.QUIT, ChatColor.RED + "" + ChatColor.GRAY + "%s");
-        lang.put(LanguageKeyword.KIT_SELECTED, "Du hast Kit %s ausgewählt");
-        lang.put(LanguageKeyword.MISSING_RIGHTS, "Du hast nicht die erforderlichen Rechte!");
-        lang.put(LanguageKeyword.JOIN_MESSAGE, ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!");
-        lang.put(LanguageKeyword.KILL_STREAK, ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!");
-        lang.put(LanguageKeyword.GLOBAL_KILLSTREAK, ChatColor.GREEN + "Der Spieler " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " hat eine Killstreak von " + ChatColor.GOLD + "%d " + ChatColor.GREEN + "erreicht!");
-        lang.put(LanguageKeyword.PLAYER_DEATH_BY_PLAYER, ChatColor.WHITE + "%s" + ChatColor.GRAY +  " wurde von " + ChatColor.WHITE + "%s" + ChatColor.GRAY + " runtergeknüppelt");
-        lang.put(LanguageKeyword.PLAYER_DEATH, ChatColor.WHITE + "%s" + ChatColor.GRAY +  " fand einen anderen Ausweg");
-        lang.put(LanguageKeyword.GRAPPLER_COOLDOWN, ChatColor.GRAY + "Du hast 5 Sekunden Cooldown!");
+    Language(String text) {
+        this.text = text;
     }
 
-    public static String getStringFromKeyword(LanguageKeyword keyword){
-        return format(lang.get(keyword));
-    }
-    public static String getUnformattedStringFromKeyword(LanguageKeyword keyword){
-        return lang.get(keyword);
+    public String getFormattedText(){
+        return SYSTEMPREFIX + ChatColor.GRAY + text;
     }
 
-    private static String format(String unformattedString){
-        return SYSTEMPREFIX + ChatColor.GRAY + unformattedString;
+    public String getText(){
+        return text;
     }
 
 }

@@ -1,6 +1,6 @@
-package net.problemzone.knockit.kitmanager.kits;
+package net.problemzone.knockit.modules.kitmanager.kits;
 
-import net.problemzone.knockit.kitmanager.Kit;
+import net.problemzone.knockit.modules.kitmanager.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class Enderman extends Kit {
 

@@ -1,9 +1,8 @@
-package net.problemzone.knockit.kitmanager;
+package net.problemzone.knockit.modules.kitmanager;
 
-import net.problemzone.knockit.kitmanager.kits.Angler;
-import net.problemzone.knockit.kitmanager.kits.Assassine;
+import net.problemzone.knockit.modules.kitmanager.kits.Angler;
+import net.problemzone.knockit.modules.kitmanager.kits.Assassine;
 import net.problemzone.knockit.util.Language;
-import net.problemzone.knockit.util.LanguageKeyword;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -61,10 +60,10 @@ public class KitListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage(Language.getStringFromKeyword(LanguageKeyword.JOIN_MESSAGE));
+        event.getPlayer().sendMessage(Language.JOIN_MESSAGE.getFormattedText());
         kitManager.giveKitSelector(event.getPlayer());
         event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
-        event.setJoinMessage(String.format(Language.getUnformattedStringFromKeyword(LanguageKeyword.JOIN), event.getPlayer().getDisplayName()));
+        event.setJoinMessage(String.format(Language.JOIN.getText(), event.getPlayer().getDisplayName()));
     }
 
     @EventHandler
@@ -94,7 +93,7 @@ public class KitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event)
     {
-        event.setQuitMessage(String.format(Language.getUnformattedStringFromKeyword(LanguageKeyword.QUIT), event.getPlayer().getDisplayName()));
+        event.setQuitMessage(String.format(Language.QUIT.getText(), event.getPlayer().getDisplayName()));
     }
 
     @EventHandler
@@ -119,7 +118,7 @@ public class KitListener implements Listener {
                     Angler.setCooldown(event.getPlayer(), 5);
                 }
                 else {
-                    player.sendMessage(Language.getStringFromKeyword(LanguageKeyword.GRAPPLER_COOLDOWN));
+                    player.sendMessage(Language.GRAPPLER_COOLDOWN.getFormattedText());
                 }
             }
         }

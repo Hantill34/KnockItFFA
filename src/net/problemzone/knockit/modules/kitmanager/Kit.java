@@ -1,4 +1,4 @@
-package net.problemzone.knockit.kitmanager;
+package net.problemzone.knockit.modules.kitmanager;
 
 
 import org.bukkit.Material;

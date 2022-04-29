@@ -1,7 +1,7 @@
-package net.problemzone.knockit.kitmanager.kits;
+package net.problemzone.knockit.modules.kitmanager.kits;
 
 
-import net.problemzone.knockit.kitmanager.Kit;
+import net.problemzone.knockit.modules.kitmanager.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,7 +14,6 @@ import org.bukkit.potion.PotionEffect;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class Angler extends Kit {
 
