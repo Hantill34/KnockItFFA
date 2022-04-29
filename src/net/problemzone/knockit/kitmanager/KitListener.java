@@ -64,7 +64,7 @@ public class KitListener implements Listener {
         event.getPlayer().sendMessage(Language.getStringFromKeyword(LanguageKeyword.JOIN_MESSAGE));
         kitManager.giveKitSelector(event.getPlayer());
         event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
-        event.setJoinMessage("");
+        event.setJoinMessage(String.format(Language.getUnformattedStringFromKeyword(LanguageKeyword.JOIN), event.getPlayer().getDisplayName()));
     }
 
     @EventHandler
@@ -94,7 +94,7 @@ public class KitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event)
     {
-        event.setQuitMessage("");
+        event.setQuitMessage(String.format(Language.getUnformattedStringFromKeyword(LanguageKeyword.QUIT), event.getPlayer().getDisplayName()));
     }
 
     @EventHandler

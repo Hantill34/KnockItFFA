@@ -12,6 +12,8 @@ public class Language {
     private static final Map<LanguageKeyword, String> lang = new HashMap<>();
 
     static {
+        lang.put(LanguageKeyword.JOIN, ChatColor.GREEN + "» " + ChatColor.WHITE + "%s");
+        lang.put(LanguageKeyword.QUIT, ChatColor.RED + "" + ChatColor.GRAY + "%s");
         lang.put(LanguageKeyword.KIT_SELECTED, "Du hast Kit %s ausgewählt");
         lang.put(LanguageKeyword.MISSING_RIGHTS, "Du hast nicht die erforderlichen Rechte!");
         lang.put(LanguageKeyword.JOIN_MESSAGE, ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!");
@@ -24,6 +26,9 @@ public class Language {
 
     public static String getStringFromKeyword(LanguageKeyword keyword){
         return format(lang.get(keyword));
+    }
+    public static String getUnformattedStringFromKeyword(LanguageKeyword keyword){
+        return lang.get(keyword);
     }
 
     private static String format(String unformattedString){
