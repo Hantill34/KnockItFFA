@@ -44,18 +44,16 @@ public class Enderman extends Kit {
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 
-    @EventHandler
-    public void hasPearl(PlayerRespawnEvent event){
-        Player p = event.getPlayer();
+    public static void hasPearl(Player player){
 
         ItemStack end = new ItemStack(Material.ENDER_PEARL, 5);
         ItemMeta endItemMeta = end.getItemMeta();
         endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
         end.setItemMeta(endItemMeta);
 
-        p.getInventory().addItem(end);
+        player.getInventory().addItem(end);
 
-        for(ItemStack item : event.getPlayer().getInventory()){
+        for(ItemStack item : player.getInventory()){
             if (item.getType() == Material.ENDER_PEARL){
                 if(item.getAmount() > 5){
                     item.setAmount(5);

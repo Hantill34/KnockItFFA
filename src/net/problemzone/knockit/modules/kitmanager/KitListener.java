@@ -2,6 +2,7 @@ package net.problemzone.knockit.modules.kitmanager;
 
 import net.problemzone.knockit.modules.kitmanager.kits.Angler;
 import net.problemzone.knockit.modules.kitmanager.kits.Assassine;
+import net.problemzone.knockit.modules.kitmanager.kits.Enderman;
 import net.problemzone.knockit.util.Language;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -88,6 +89,7 @@ public class KitListener implements Listener {
             if (event.getEntity().getKiller() != null) {
                 if (kitManager.getKitByPlayer(event.getEntity().getKiller()) instanceof Assassine) {
                     Assassine.onKill(event.getEntity().getKiller());
+                    Enderman.hasPearl(event.getEntity());
                 }
             }
         }
