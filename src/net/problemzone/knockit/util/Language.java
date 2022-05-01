@@ -6,7 +6,7 @@ public enum Language {
 
     KIT_SELECTED("Du hast Kit %s ausgewählt"),
     MISSING_RIGHTS("Du hast nicht die erforderlichen Rechte!"),
-    JOIN_MESSAGE(ChatColor.GRAY + "Spielmodus KnockIt erfolgreich beigetreten!"),
+    JOIN_MESSAGE(ChatColor.GRAY + "Spielmodus " + ChatColor.GREEN + ChatColor.BOLD + "KnockIt " + ChatColor.RESET + ChatColor.GRAY + "erfolgreich beigetreten!"),
     KILL_STREAK(ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!"),
     GLOBAL_KILLSTREAK(ChatColor.GREEN + "Der Spieler " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " hat eine Killstreak von " + ChatColor.GOLD + "%d " + ChatColor.GREEN + "erreicht!"),
     PLAYER_DEATH(ChatColor.WHITE + "%s" + ChatColor.GRAY +  " fand einen anderen Ausweg"),

@@ -5,6 +5,7 @@ import net.problemzone.knockit.modules.boostpads.BoostpadListener;
 import net.problemzone.knockit.modules.kitmanager.Kit;
 import net.problemzone.knockit.modules.kitmanager.KitListener;
 import net.problemzone.knockit.modules.kitmanager.KitManager;
+import net.problemzone.knockit.modules.kitmanager.RespawnListener;
 import net.problemzone.knockit.modules.kitmanager.kits.Angler;
 import net.problemzone.knockit.modules.scoreboard.ScoreboardHandler;
 import net.problemzone.knockit.modules.scoreboard.ScoreboardListener;
@@ -23,13 +24,15 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new KitListener(kitManager), this);
         getServer().getPluginManager().registerEvents(new WorldProtectionListener(), this);
         getServer().getPluginManager().registerEvents(new BoostpadListener(), this);
+        getServer().getPluginManager().registerEvents(new RespawnListener(), this);
 
         loadKits();
-        Angler.setupCooldown();
+        Angler.setupCooldown();  //Cooldown der Angel
 
         System.out.println(ChatColor.GREEN + "Das Plugin wurde erfolgreich geladen!");
     }
 
+    //Kits werden geladen
     private void loadKits() {
         for (Kit kit : kitManager.getKits()) {
             Bukkit.getPluginManager().registerEvents(kit, this);

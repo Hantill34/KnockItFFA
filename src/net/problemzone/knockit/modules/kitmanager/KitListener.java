@@ -20,6 +20,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class KitListener implements Listener {
@@ -53,21 +56,33 @@ public class KitListener implements Listener {
         e.setCancelled(true);
     }
 
-    @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent event) {
-        kitManager.giveKitSelector(event.getPlayer());
+   /* @EventHandler
+    public void hasKitSelector(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+
+
+        for (ItemStack item : player.getInventory().getContents()) {
+            int amount = item.getAmount();
+
+            if (item.getType() == Material.CHEST) {
+            event.getItem().setAmount(1);
+            }
+        }
     }
+    */
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        player.getInventory().clear();
         event.getPlayer().sendMessage(Language.JOIN_MESSAGE.getFormattedText());
-        kitManager.giveKitSelector(event.getPlayer());
+        kitManager.giveKitSelector(event.getPlayer());                                                                  //Kiste
         event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
         event.setJoinMessage(String.format(Language.JOIN.getText(), event.getPlayer().getDisplayName()));
     }
 
     @EventHandler
-    public void onPlayerTod(PlayerDeathEvent event) {
+    public void onPlayerDeath(PlayerDeathEvent event) {
 
         if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
             if (event.getEntity().getKiller() != null) {
@@ -93,7 +108,9 @@ public class KitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event)
     {
+        Player player = event.getPlayer();
         event.setQuitMessage(String.format(Language.QUIT.getText(), event.getPlayer().getDisplayName()));
+        player.getInventory().clear();
     }
 
     @EventHandler
@@ -113,7 +130,7 @@ public class KitListener implements Listener {
                     Location grapplingLocation = event.getHook().getLocation();
                     Location change = grapplingLocation.subtract(playerLocation);
                     Vector vector = change.toVector();
-                    vector.setY(vector.getY() * 0.15);
+                    vector.setY(vector.getY() * 0.2);
                     player.setVelocity(vector.multiply(0.5));
                     Angler.setCooldown(event.getPlayer(), 5);
                 }
@@ -123,4 +140,15 @@ public class KitListener implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event){
+        Player player = event.getPlayer();
+
+        if(player.getLocation().getY() < 125){
+            player.setHealth(0);
+        }
+    }
+
+
 }

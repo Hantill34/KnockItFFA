@@ -28,7 +28,8 @@ public class KitManager {
         kits.add(new Knight());
     }
 
-    public void giveKitSelector(Player p) {
+    public static void giveKitSelector(Player p) {
+
         ItemStack chest = new ItemStack(Material.CHEST, 1);
         ItemMeta chestItemMeta = chest.getItemMeta();
 
@@ -36,9 +37,11 @@ public class KitManager {
         chestItemMeta.setDisplayName(ChatColor.YELLOW + "Kitauswahl");
         chest.setItemMeta(chestItemMeta);
 
-        p.getInventory().clear();
         p.getInventory().addItem(chest);
+
     }
+
+
 
     public void openInventory(Player p) {
         Inventory inv = Bukkit.createInventory(null, 9, ChatColor.YELLOW + "Kitauswahl");
