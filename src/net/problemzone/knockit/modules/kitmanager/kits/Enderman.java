@@ -5,7 +5,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
+
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -39,6 +42,26 @@ public class Enderman extends Kit {
         p.getInventory().addItem(stock);
         p.getInventory().addItem(end);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
+    }
+
+    @EventHandler
+    public void hasPearl(PlayerRespawnEvent event){
+        Player p = event.getPlayer();
+
+        ItemStack end = new ItemStack(Material.ENDER_PEARL, 5);
+        ItemMeta endItemMeta = end.getItemMeta();
+        endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
+        end.setItemMeta(endItemMeta);
+
+        p.getInventory().addItem(end);
+
+        for(ItemStack item : event.getPlayer().getInventory()){
+            if (item.getType() == Material.ENDER_PEARL){
+                if(item.getAmount() > 5){
+                    item.setAmount(5);
+                }
+            }
+        }
     }
 
 }

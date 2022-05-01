@@ -41,4 +41,5 @@ public class RespawnListener implements Listener {
 
         KitManager.giveKitSelector(event.getPlayer());
     }
+
 }

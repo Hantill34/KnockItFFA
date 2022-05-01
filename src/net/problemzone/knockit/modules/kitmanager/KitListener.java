@@ -130,7 +130,7 @@ public class KitListener implements Listener {
                     Location grapplingLocation = event.getHook().getLocation();
                     Location change = grapplingLocation.subtract(playerLocation);
                     Vector vector = change.toVector();
-                    vector.setY(vector.getY() * 0.2);
+                    vector.setY(vector.getY() * 0.16);
                     player.setVelocity(vector.multiply(0.5));
                     Angler.setCooldown(event.getPlayer(), 5);
                 }
@@ -157,7 +157,6 @@ public class KitListener implements Listener {
                 }
             }
         }
-
     }
 
 }

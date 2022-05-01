@@ -12,7 +12,7 @@ public enum Language {
     PLAYER_DEATH_BY_PLAYER(ChatColor.WHITE + "%s" + ChatColor.GRAY +  " wurde von " + ChatColor.WHITE + "%s" + ChatColor.GRAY + " runtergeknüppelt"),
     GRAPPLER_COOLDOWN (ChatColor.GRAY + "Du hast 5 Sekunden Cooldown!"),
     JOIN(ChatColor.GREEN + "» " + ChatColor.WHITE + "%s"),
-    QUIT(ChatColor.RED + "" + ChatColor.GRAY + "%s");
+    QUIT(ChatColor.RED + "« " + ChatColor.GRAY + "%s");
 
     private static final String SYSTEMPREFIX = ChatColor.GREEN + "KnockIt " + ChatColor.DARK_GRAY + "» ";
 

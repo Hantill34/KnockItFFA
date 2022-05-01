@@ -2,6 +2,7 @@ package net.problemzone.knockit.modules.kitmanager.kits;
 
 
 import net.problemzone.knockit.modules.kitmanager.Kit;
+import net.problemzone.knockit.util.Language;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
