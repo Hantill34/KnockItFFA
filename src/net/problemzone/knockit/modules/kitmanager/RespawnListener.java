@@ -34,7 +34,7 @@ public class RespawnListener implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
-        ItemStack[]  newInventory= inv.get(event.getPlayer().getName());
+        ItemStack[]  newInventory = inv.get(event.getPlayer().getName());
         if (inv.containsKey(event.getPlayer().getName()))
             event.getPlayer().getInventory().setArmorContents(newInventory);
         inv.remove(event.getPlayer());

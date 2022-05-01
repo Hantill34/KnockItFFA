@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 
 public enum Language {
 
-    KIT_SELECTED("Du hast Kit %s ausgewählt"),
     MISSING_RIGHTS("Du hast nicht die erforderlichen Rechte!"),
     JOIN_MESSAGE(ChatColor.GRAY + "Spielmodus " + ChatColor.GREEN + ChatColor.BOLD + "KnockIt " + ChatColor.RESET + ChatColor.GRAY + "erfolgreich beigetreten!"),
     KILL_STREAK(ChatColor.GREEN + "Du hast eine Killstreak von " + ChatColor.GOLD + "%s" + ChatColor.GREEN + " erreicht!"),

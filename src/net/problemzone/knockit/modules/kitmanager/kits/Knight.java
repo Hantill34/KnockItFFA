@@ -24,7 +24,7 @@ public class Knight extends Kit {
         ItemMeta stockItemMeta = stick.getItemMeta();
         stockItemMeta.setUnbreakable(true);
         stockItemMeta.setDisplayName(ChatColor.RED + "Knüppel");
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 2, true);
+        stockItemMeta.addEnchant(Enchantment.KNOCKBACK,4, true);
         stick.setItemMeta(stockItemMeta);
 
         ItemStack shield = new ItemStack(Material.SHIELD, 1);

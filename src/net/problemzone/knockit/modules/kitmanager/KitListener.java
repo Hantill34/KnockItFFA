@@ -56,20 +56,20 @@ public class KitListener implements Listener {
         e.setCancelled(true);
     }
 
-   /* @EventHandler
+    @EventHandler
     public void hasKitSelector(PlayerInteractEvent event){
         Player player = event.getPlayer();
 
-
-        for (ItemStack item : player.getInventory().getContents()) {
-            int amount = item.getAmount();
-
-            if (item.getType() == Material.CHEST) {
-            event.getItem().setAmount(1);
+        for (ItemStack item : player.getInventory()){
+            if(item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Kitauswahl")){
+                if(item.getAmount() > 1){
+                    item.setAmount(item.getAmount() - 1);
+                    player.updateInventory();
+                }
             }
         }
     }
-    */
+
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -148,7 +148,16 @@ public class KitListener implements Listener {
         if(player.getLocation().getY() < 125){
             player.setHealth(0);
         }
-    }
 
+        if(player.getLocation().getY() < 153){
+            for (ItemStack item : event.getPlayer().getInventory()){
+                if (item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Kitauswahl")) {
+
+                    item.setAmount(0);
+                }
+            }
+        }
+
+    }
 
 }
