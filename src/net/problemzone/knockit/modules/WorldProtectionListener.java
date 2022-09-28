@@ -1,5 +1,6 @@
 package net.problemzone.knockit.modules;
 
+import net.problemzone.knockit.util.config.MapManager;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,8 +16,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class WorldProtectionListener implements Listener {
-
-    private final static int RESPAWN_PROTECTION_HEIGHT = 150;
 
     @EventHandler
     //Cancels Block Breaks
@@ -76,7 +75,7 @@ public class WorldProtectionListener implements Listener {
     @EventHandler
     //Cancel Damage in Respawn Area
     public void onRespawnDamage(EntityDamageEvent e) {
-        if (e.getEntity().getLocation().getBlockY() > RESPAWN_PROTECTION_HEIGHT)
+        if (e.getEntity().getLocation().getBlockY() > MapManager.getInstance().getCurrentMap().getFightheight())
             e.setCancelled(true);
     }
 }

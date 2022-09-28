@@ -1,0 +1,34 @@
+#KnockIt Config
+
+#Worlds
+Maps:
+  '1':
+    Welt: knockit2
+    Spawn:
+      X: 8
+      Y: 168
+      Z: 11
+      Yaw: 0
+      Pitch: 0
+    Fightheight: 153
+    Deathheight: 127
+  '2':
+    Welt: knockit3
+    Spawn:
+      X: 8.5
+      Y: 168
+      Z: 10
+      Yaw: 0
+      Pitch: 0
+    Fightheight: 156
+    Deathheight: 127
+  '3':
+    Welt: knockit1
+    Spawn:
+      X: 8.5
+      Y: 168
+      Z: 10
+      Yaw: 0
+      Pitch: 0
+    Fightheight: 152
+    Deathheight: 123

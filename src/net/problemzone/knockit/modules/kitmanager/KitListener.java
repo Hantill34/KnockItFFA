@@ -4,6 +4,8 @@ import net.problemzone.knockit.modules.kitmanager.kits.Angler;
 import net.problemzone.knockit.modules.kitmanager.kits.Assassine;
 import net.problemzone.knockit.modules.kitmanager.kits.Enderman;
 import net.problemzone.knockit.util.Language;
+import net.problemzone.knockit.util.config.MapManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -77,8 +79,11 @@ public class KitListener implements Listener {
         Player player = event.getPlayer();
         player.getInventory().clear();
         event.getPlayer().sendMessage(Language.JOIN_MESSAGE.getFormattedText());
-        kitManager.giveKitSelector(event.getPlayer());                                                                  //Kiste
-        event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
+        kitManager.giveKitSelector(event.getPlayer());
+        MapManager.MapSpawnpoint spawn = MapManager.getInstance().getCurrentMap();
+        Location spawnpoint = spawn.getCoordinates().toLocation(Bukkit.getWorld(spawn.getWorld()), (float) spawn.getYaw(), (float) spawn.getPitch());
+
+        event.getPlayer().teleport(spawnpoint);
         event.setJoinMessage(String.format(Language.JOIN.getText(), event.getPlayer().getDisplayName()));
     }
 
@@ -164,11 +169,12 @@ public class KitListener implements Listener {
     public void onPlayerMoveEvent(PlayerMoveEvent event){
         Player player = event.getPlayer();
 
-        if(player.getLocation().getY() < 125){
+
+        if(player.getLocation().getY() < MapManager.getInstance().getCurrentMap().getDeathheight()){
             player.setHealth(0);
         }
 
-        if(player.getLocation().getY() < 153){
+        if(player.getLocation().getY() < MapManager.getInstance().getCurrentMap().getFightheight()){
             for (ItemStack item : event.getPlayer().getInventory()){
                 if (item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Kitauswahl")) {
 
@@ -176,6 +182,7 @@ public class KitListener implements Listener {
                 }
             }
         }
+
     }
 
 }
