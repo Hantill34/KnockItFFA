@@ -1,5 +1,6 @@
 package net.problemzone.knockit.modules.kitmanager;
 
+import net.problemzone.knockit.modules.kitmanager.kits.Enderman;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

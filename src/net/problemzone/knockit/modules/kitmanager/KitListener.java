@@ -85,13 +85,30 @@ public class KitListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
+        Player player = event.getEntity().getPlayer();
+
         if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
             if (event.getEntity().getKiller() != null) {
                 if (kitManager.getKitByPlayer(event.getEntity().getKiller()) instanceof Assassine) {
                     Assassine.onKill(event.getEntity().getKiller());
-                    Enderman.hasPearl(event.getEntity());
+                }
+                if(kitManager.getKitByPlayer(event.getEntity().getKiller()) instanceof Enderman){
+                    Enderman.onKill(event.getEntity().getKiller());
                 }
             }
+        }
+
+        player.spigot().respawn();
+    }
+
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event){
+        Player player = event.getPlayer();
+
+        if(kitManager.getKitByPlayer(event.getPlayer()) instanceof Enderman){
+
+            Enderman.hasPearl(event.getPlayer());
         }
     }
 
