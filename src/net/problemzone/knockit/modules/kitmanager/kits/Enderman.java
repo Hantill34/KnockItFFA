@@ -13,8 +13,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.Objects;
-
 public class Enderman extends Kit {
 
     public Enderman() {
@@ -46,7 +44,7 @@ public class Enderman extends Kit {
     // <--- Class Listener --->
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
+        if (event.getEntity().getLastDamageCause() == null || event.getEntity().getLastDamageCause().getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
         if (event.getEntity().getKiller() == null) return;
         if (!(KitManager.getInstance().getKitByPlayer(event.getEntity().getKiller()) instanceof Enderman)) return;
         onKill(event.getEntity().getKiller());

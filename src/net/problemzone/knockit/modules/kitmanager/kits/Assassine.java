@@ -15,8 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Objects;
-
 
 public class Assassine extends Kit {
 
@@ -56,7 +54,7 @@ public class Assassine extends Kit {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
+        if (event.getEntity().getLastDamageCause() == null || event.getEntity().getLastDamageCause().getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
         if (event.getEntity().getKiller() == null) return;
         if (!(KitManager.getInstance().getKitByPlayer(event.getEntity().getKiller()) instanceof Assassine)) return;
         onKill(event.getEntity().getKiller());
