@@ -15,7 +15,7 @@ public class ConfigManager {
     private YamlConfiguration yamlConfiguration;
 
     private ConfigManager() {
-        this.plugin = Main.getJavaPlugin();
+        this.plugin = Main.getInstance();
     }
 
     public void setupConfig() {

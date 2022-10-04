@@ -13,19 +13,13 @@ import java.util.Objects;
 
 public class ScoreboardListener implements Listener {
 
-    private final ScoreboardHandler scoreboardHandler;
-
-    public ScoreboardListener(ScoreboardHandler scoreboardHandler) {
-        this.scoreboardHandler = scoreboardHandler;
-    }
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
 
-        scoreboardHandler.initPlayer(p);
-        scoreboardHandler.setScoreboard(p);
-        scoreboardHandler.updateScoreboard();
+        ScoreboardManager.getInstance().initPlayer(p);
+        ScoreboardManager.getInstance().setScoreboard(p);
+        ScoreboardManager.getInstance().updateScoreboard();
     }
 
     @EventHandler
@@ -46,12 +40,12 @@ public class ScoreboardListener implements Listener {
 
         if(Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
             if (event.getEntity().getKiller() != null) {
-                scoreboardHandler.increaseKillCounter(event.getEntity().getKiller());
+                ScoreboardManager.getInstance().increaseKillCounter(event.getEntity().getKiller());
                 event.setDeathMessage(String.format(Language.PLAYER_DEATH_BY_PLAYER.getFormattedText(), event.getEntity().getName(), event.getEntity().getKiller().getName()));
             }
 
-            scoreboardHandler.increaseDeathCounter(event.getEntity());
-            scoreboardHandler.updateScoreboard();
+            ScoreboardManager.getInstance().increaseDeathCounter(event.getEntity());
+            ScoreboardManager.getInstance().updateScoreboard();
         }
     }
 }

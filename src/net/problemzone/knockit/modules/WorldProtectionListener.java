@@ -1,7 +1,6 @@
 package net.problemzone.knockit.modules;
 
-import net.problemzone.knockit.util.config.MapManager;
-import org.bukkit.event.Event;
+import net.problemzone.knockit.modules.maps.MapManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -13,7 +12,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 
 public class WorldProtectionListener implements Listener {
 

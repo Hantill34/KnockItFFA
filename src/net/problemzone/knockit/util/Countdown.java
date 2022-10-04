@@ -41,7 +41,7 @@ public class Countdown {
                 }
                 remaining.getAndDecrement();
             }
-        }.runTaskTimer(Main.getJavaPlugin(), 0, 20);
+        }.runTaskTimer(Main.getInstance(), 0, 20);
     }
 
     public static void cancelChatCountdown() {

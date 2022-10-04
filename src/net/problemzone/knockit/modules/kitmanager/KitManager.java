@@ -1,15 +1,18 @@
 package net.problemzone.knockit.modules.kitmanager;
 
-import net.problemzone.knockit.modules.kitmanager.kits.*;
+import net.problemzone.knockit.modules.kitmanager.kits.Angler;
+import net.problemzone.knockit.modules.kitmanager.kits.Assassine;
+import net.problemzone.knockit.modules.kitmanager.kits.Enderman;
+import net.problemzone.knockit.modules.kitmanager.kits.Kit;
+import net.problemzone.knockit.modules.kitmanager.kits.Knight;
+import net.problemzone.knockit.modules.kitmanager.kits.Tank;
+import net.problemzone.knockit.util.ItemStackBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 public class KitManager {
+
+    private static KitManager instance;
     private final List<Kit> kits = new ArrayList<>();
     private final Map<Player, Kit> playerKitMap = new HashMap<>();
 
 
-    public KitManager() {
+    private KitManager() {
         //NEUES KIT HIER REGISTRIEREN
         kits.add(new Angler());
         kits.add(new Enderman());
@@ -30,17 +35,9 @@ public class KitManager {
         kits.add(new Knight());
     }
 
-    public static void giveKitSelector(Player p) {
-
-        ItemStack chest = new ItemStack(Material.CHEST, 1);
-        ItemMeta chestItemMeta = chest.getItemMeta();
-
-        assert chestItemMeta != null;
-        chestItemMeta.setDisplayName(ChatColor.YELLOW + "Kitauswahl");
-        chest.setItemMeta(chestItemMeta);
-
+    public void giveKitSelector(Player p) {
+        ItemStack chest = new ItemStackBuilder(Material.CHEST, ChatColor.YELLOW + "Kitauswahl").getItemStack();
         p.getInventory().addItem(chest);
-
     }
 
 
@@ -49,15 +46,15 @@ public class KitManager {
 
         //füllt das Inventar mit Items
 
-        inv.setItem(0, kits.get(0).getItem());
+        inv.setItem(0, kits.get(0).getPreviewItem());
         inv.setItem(1, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(2, kits.get(1).getItem());
+        inv.setItem(2, kits.get(1).getPreviewItem());
         inv.setItem(3, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(4, kits.get(2).getItem());
+        inv.setItem(4, kits.get(2).getPreviewItem());
         inv.setItem(5, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(6, kits.get(3).getItem());
+        inv.setItem(6, kits.get(3).getPreviewItem());
         inv.setItem(7, new ItemStack(Material.RED_STAINED_GLASS_PANE));
-        inv.setItem(8, kits.get(4).getItem());
+        inv.setItem(8, kits.get(4).getPreviewItem());
 
         p.openInventory(inv);
     }
@@ -84,7 +81,10 @@ public class KitManager {
         return playerKitMap.get(player);
     }
 
-
+    public static KitManager getInstance() {
+        if (instance == null) instance = new KitManager();
+        return instance;
+    }
 }
 
 

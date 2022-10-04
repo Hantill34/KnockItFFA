@@ -1,15 +1,19 @@
 package net.problemzone.knockit.modules.kitmanager.kits;
 
-import net.problemzone.knockit.modules.kitmanager.Kit;
+import net.problemzone.knockit.modules.kitmanager.KitManager;
+import net.problemzone.knockit.util.ItemStackBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
-
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.Objects;
 
 public class Enderman extends Kit {
 
@@ -22,16 +26,8 @@ public class Enderman extends Kit {
     public void equip(Player p) {
         p.getInventory().clear();
 
-        ItemStack stock = new ItemStack(Material.STICK, 1);
-        ItemMeta stockItemMeta = stock.getItemMeta();
-        stockItemMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
-        stockItemMeta.setDisplayName(ChatColor.RED + "Knüppel");
-        stock.setItemMeta(stockItemMeta);
-
-        ItemStack end = new ItemStack(Material.ENDER_PEARL, 5);
-        ItemMeta endItemMeta = end.getItemMeta();
-        endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
-        end.setItemMeta(endItemMeta);
+        ItemStack stock = new ItemStackBuilder(Material.STICK, ChatColor.RED + "Knüppel").addEnchantment(Enchantment.KNOCKBACK, 3).getItemStack();
+        ItemStack end = new ItemStackBuilder(Material.ENDER_PEARL, ChatColor.DARK_PURPLE + "Enderpearl", 5).getItemStack();
 
         p.getInventory().clear();
         for (PotionEffect effect : p.getActivePotionEffects()) {
@@ -42,34 +38,18 @@ public class Enderman extends Kit {
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 3, 1);
     }
 
-    public static void hasPearl(Player player){
-
-        ItemStack end = new ItemStack(Material.ENDER_PEARL, 5);
-        ItemMeta endItemMeta = end.getItemMeta();
-        endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
-        end.setItemMeta(endItemMeta);
-
+    public void onKill(Player player){
+        ItemStack end = new ItemStackBuilder(Material.ENDER_PEARL, ChatColor.DARK_PURPLE + "Enderpearl", 5).getItemStack();
         player.getInventory().addItem(end);
-
-        for(ItemStack item : player.getInventory()){
-            if (item.getType() == Material.ENDER_PEARL){
-                if(item.getAmount() > 5){
-                    item.setAmount(5);
-                }
-            }else if (item.getAmount() < 5 && item.getType() == Material.ENDER_PEARL){
-                    item.setAmount(5);
-            }
-        }
     }
 
-    public static void onKill(Player player){
-
-        ItemStack end = new ItemStack(Material.ENDER_PEARL, 1);
-        ItemMeta endItemMeta = end.getItemMeta();
-        endItemMeta.setDisplayName(ChatColor.DARK_PURPLE + "Enderpearl");
-        end.setItemMeta(endItemMeta);
-
-        player.getInventory().addItem(end);
+    // <--- Class Listener --->
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        if (Objects.requireNonNull(event.getEntity().getLastDamageCause()).getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
+        if (event.getEntity().getKiller() == null) return;
+        if (!(KitManager.getInstance().getKitByPlayer(event.getEntity().getKiller()) instanceof Enderman)) return;
+        onKill(event.getEntity().getKiller());
     }
 
 }

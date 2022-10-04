@@ -2,60 +2,64 @@ package net.problemzone.knockit;
 
 import net.problemzone.knockit.modules.WorldProtectionListener;
 import net.problemzone.knockit.modules.boostpads.BoostpadListener;
-import net.problemzone.knockit.modules.kitmanager.Kit;
+import net.problemzone.knockit.modules.kitmanager.GameListener;
 import net.problemzone.knockit.modules.kitmanager.KitListener;
 import net.problemzone.knockit.modules.kitmanager.KitManager;
-import net.problemzone.knockit.modules.kitmanager.RespawnListener;
-import net.problemzone.knockit.modules.kitmanager.kits.Angler;
-import net.problemzone.knockit.modules.scoreboard.ScoreboardHandler;
+import net.problemzone.knockit.modules.kitmanager.kits.Kit;
+import net.problemzone.knockit.modules.maps.MapManager;
 import net.problemzone.knockit.modules.scoreboard.ScoreboardListener;
 import net.problemzone.knockit.util.config.ConfigManager;
-import net.problemzone.knockit.util.config.MapManager;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
-    private static JavaPlugin javaPlugin;
-    public static JavaPlugin getJavaPlugin() {
-        return javaPlugin;
-    }
-
-    public KitManager kitManager = new KitManager();
-    public ScoreboardHandler scoreboardHandler = new ScoreboardHandler();
+    private static Main instance;
 
     @Override
     public void onEnable() {
+        getLogger().info("Loading KnockIt Plugin.");
         initiatePlugin();
+
+        getLogger().info("Load KnockIt Worlds.");
+        loadWorlds();
+
+        getLogger().info("Loading KnockIt Kits.");
+        loadKits();
+
+        getLogger().info("Loading KnockIt Listeners.");
+        registerListeners();
+
+        getLogger().info("KnockIt primed and ready.");
+    }
+
+    private void initiatePlugin() {
+        instance = this;
         ConfigManager.getInstance().setupConfig();
+    }
 
-
+    private void loadWorlds() {
         MapManager.getInstance().addGameMaps();
         MapManager.getInstance().startMapRotation();
-
-        getServer().getPluginManager().registerEvents(new ScoreboardListener(scoreboardHandler), this);
-        getServer().getPluginManager().registerEvents(new KitListener(kitManager), this);
+    }
+    
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new ScoreboardListener(), this);
+        getServer().getPluginManager().registerEvents(new KitListener(), this);
         getServer().getPluginManager().registerEvents(new WorldProtectionListener(), this);
         getServer().getPluginManager().registerEvents(new BoostpadListener(), this);
-        getServer().getPluginManager().registerEvents(new RespawnListener(), this);
-
-        loadKits();
-        Angler.setupCooldown();  //Cooldown der Angel
-
-        System.out.println(ChatColor.GREEN + "Das Plugin wurde erfolgreich geladen!");
+        getServer().getPluginManager().registerEvents(new GameListener(), this);
     }
 
     //Kits werden geladen
     private void loadKits() {
-        for (Kit kit : kitManager.getKits()) {
+        for (Kit kit : KitManager.getInstance().getKits()) {
             Bukkit.getPluginManager().registerEvents(kit, this);
         }
     }
 
-    private void initiatePlugin() {
-        javaPlugin = this;
+    public static Main getInstance() {
+        return instance;
     }
 
 }

@@ -11,11 +11,16 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class ScoreboardHandler {
+public class ScoreboardManager {
+
+    private static ScoreboardManager instance;
 
     private final Map<Player, Integer> playerDeaths = new HashMap<>();
     private final Map<Player, Integer> playerKills = new HashMap<>();
     private final Map<Player, Integer> playerKillStreak = new HashMap<>();
+
+    private ScoreboardManager() {
+    }
 
     public void setScoreboard(Player player) {
         Scoreboard board = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
@@ -125,4 +130,8 @@ public class ScoreboardHandler {
         playerKillStreak.put(player, 0);
     }
 
+    public static ScoreboardManager getInstance() {
+        if (instance == null) instance = new ScoreboardManager();
+        return instance;
+    }
 }
